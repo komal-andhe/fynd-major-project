@@ -1,10 +1,10 @@
-import { api_url } from "../../config";
+// import { api_url } from "../../config";
 
 
 // fetch logged in user order
 export function fetchLoggedInUserOrders(userId) {
     return new Promise(async (resolve) =>{
-      const response = await fetch(`${api_url}/orders/user/`+userId) 
+      const response = await fetch('http://localhost:4500/orders/user/'+userId) 
       const data = await response.json()
       resolve({data})
     }
@@ -14,7 +14,7 @@ export function fetchLoggedInUserOrders(userId) {
 // fetch logged in user
   export function fetchLoggedInUser(userId) {
     return new Promise(async (resolve) =>{
-      const response = await fetch(`${api_url}/users/`+userId) 
+      const response = await fetch('http://localhost:4500/users/'+userId) 
       const data = await response.json()
       resolve({data})
     }
@@ -24,7 +24,7 @@ export function fetchLoggedInUserOrders(userId) {
 
   export function updateUser(update){
     return new Promise(async(resolve)=>{
-        const response =await fetch(`${api_url}/users/`+update.id,{
+        const response =await fetch('http://localhost:4500/users/'+update.id,{
             method:'PATCH',
             body:JSON.stringify(update),
             headers:{'content-type':'application/json'}
