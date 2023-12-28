@@ -4,7 +4,7 @@ import { api_url } from "../../config";
 // fetching cart details
 export function addToCart(item) {
     return new Promise(async (resolve) => {
-      const response = await fetch('/cart', {
+      const response = await fetch(`${api_url}/cart`, {
         method: 'POST',
         body: JSON.stringify(item),
         headers: { 'content-type': 'application/json' },
@@ -18,7 +18,7 @@ export function addToCart(item) {
 //   fetching items by userid
   export function fetchItemsByUserId(userId) {
     return new Promise(async (resolve) => {
-      const response = await fetch('/cart?user='+userId)
+      const response = await fetch(`${api_url}/cart?user=`+userId)
       const data = await response.json();
       resolve({data});
     });
@@ -27,7 +27,7 @@ export function addToCart(item) {
 // update items in cart
 export function updateCart(update) {
     return new Promise(async (resolve) => {
-      const response = await fetch('/cart/'+update.id, {
+      const response = await fetch(`${api_url}/cart/`+update.id, {
         method: 'PATCH',
         body: JSON.stringify(update),
         headers: { 'content-type': 'application/json' },
@@ -41,7 +41,7 @@ export function updateCart(update) {
 //   Deleting items from carts
 export function deleteItemFromCart(itemId) {
     return new Promise(async (resolve) => {
-      const response = await fetch('/cart/'+itemId, {
+      const response = await fetch(`${api_url}/cart/`+itemId, {
         method: 'DELETE',
         headers: { 'content-type': 'application/json' },
       });

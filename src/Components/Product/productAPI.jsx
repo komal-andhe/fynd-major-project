@@ -5,7 +5,7 @@ import { api_url } from "../../config";
     export function fetchProductById(id){
         return new Promise(async(resolve)=>{
     // todo:will not hard-code server url here
-            const response =await fetch('/products/'+id);
+            const response =await fetch(`${api_url}/products/`+id);
             const data =await response.json();
             resolve({data});
     
@@ -16,7 +16,7 @@ import { api_url } from "../../config";
 // api : create product
 export function createProduct(product){
     return new Promise(async(resolve)=>{
-        const response =await fetch('/products/',{
+        const response =await fetch(`${api_url}/products/`,{
             method:'POST',
             body:JSON.stringify(product),
             headers:{'content-type':'application/json'}
@@ -50,7 +50,7 @@ export function fetchProductsByFilters({filter,pagination}){
 
     return new Promise(async(resolve)=>{
 
-        const response =await fetch('/products?'+queryString);
+        const response =await fetch(`${api_url}/products?`+queryString);
         const data =await response.json();
         const totalItems=await response.headers.get('X-Total-Count')
         resolve({data:{products:data, totalItems:+totalItems}});
@@ -61,7 +61,7 @@ export function fetchProductsByFilters({filter,pagination}){
 // fetching categories data
 export function fetchCategories(){
     return new Promise(async(resolve)=>{
-        const response =await fetch('/categories');
+        const response =await fetch(`${api_url}/categories`);
         const data =await response.json();
         resolve({data});
 
